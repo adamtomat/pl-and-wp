@@ -1,0 +1,8 @@
+{% set colour = 'bad' %}
+{% if score >= 4 and score <= 7 %}
+    {% set colour = 'ok' %}
+{% elseif score >= 8 %}
+    {% set colour = 'good' %}
+{% endif %}
+
+<div class="score score--{{ colour }}" data-score="{{ score }}">

@@ -22,13 +22,25 @@ module.exports = function(grunt) {
 		},
 
 		uglify: {
-			options: {
-				banner: '<%= meta.banner %>\n'
+			reveal: {
+				options: {
+					banner: '<%= meta.banner %>\n'
+				},
+				build: {
+					src: 'js/reveal.js',
+					dest: 'js/reveal.min.js'
+				}
 			},
-			build: {
-				src: 'js/reveal.js',
-				dest: 'js/reveal.min.js'
-			}
+			prism: {
+		        options: {
+		            banner: '/**\n * Prism: Lightweight, robust, elegant syntax highlighting\n * MIT license http://www.opensource.org/licenses/mit-license.php/\n * @author Lea Verou http://lea.verou.me\n */\n'
+		        },
+		        files: [
+		            {
+		                'js/prism.min.js' : 'js/prism.js',
+		            }
+		        ]
+		    }
 		},
 
 		sass: {
@@ -134,6 +146,22 @@ module.exports = function(grunt) {
 			options: {
 				livereload: true
 			}
+		},
+
+		concat: {
+			prism: {
+		        options: {
+		            separator: ';',
+		        },
+		        src: [
+		            'bower_components/prism/prism.js',
+		            'bower_components/prism/components/prism-php.js',
+		            'bower_components/prism/components/prism-bash.js',
+		            'bower_components/prism/components/prism-sass.js',
+		            'bower_components/prism/components/prism-twig.js',
+		        ],
+		        dest: 'js/prism.js',
+	    	}
 		}
 
 	});
@@ -142,6 +170,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-qunit' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
+	grunt.loadNpmTasks( 'grunt-contrib-concat' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-sass' );
@@ -153,7 +182,7 @@ module.exports = function(grunt) {
 	grunt.registerTask( 'default', [ 'css', 'js' ] );
 
 	// JS task
-	grunt.registerTask( 'js', [ 'jshint', 'uglify', 'qunit' ] );
+	grunt.registerTask( 'js', [ 'jshint', 'uglify:reveal', 'qunit' ] );
 
 	// Theme CSS
 	grunt.registerTask( 'css-themes', [ 'sass:themes' ] );
@@ -172,5 +201,7 @@ module.exports = function(grunt) {
 
 	// Run tests
 	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
+
+    grunt.registerTask('prism', ['concat:prism', 'uglify:prism']);
 
 };

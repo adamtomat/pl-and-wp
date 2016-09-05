@@ -1,0 +1,176 @@
+/**
+ * Solarized Dark theme for reveal.js.
+ * Author: Achim Staebler
+ */
+
+$color-white: #fff;
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic);
+
+/**
+ * Solarized colors by Ethan Schoonover
+ */
+html * {
+    color-profile: sRGB;
+    rendering-intent: auto;
+}
+// Background of the presentation
+$backgroundColor: $color-white;
+
+// Primary/body text
+$mainFont: 'Lato', Open Sans, sans-serif;
+$mainFontSize: 28px;
+$mainColor: #686b6b;
+
+// Vertical spacing between blocks of text
+$blockMargin: 20px;
+
+// Headings
+$headingMargin: 0 0 $blockMargin 0;
+$headingFont: 'Lato', Open Sans, sans-serif;
+$headingColor: #000;
+$headingLineHeight: 1.2;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingTextShadow: none;
+$headingFontWeight: 700;
+$heading1TextShadow: $headingTextShadow;
+
+$heading1Size: 3.77em;
+$heading2Size: 2.11em;
+$heading3Size: 1.55em;
+$heading4Size: 1.00em;
+
+$rareloop-blue: #2dbcfd;
+
+// Links and actions
+$linkColor: $rareloop-blue;
+$linkColorHover: darken( $linkColor, 20% );
+
+// Text selection
+$selectionBackgroundColor: #FF5E99;
+$selectionColor: $color-white;
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal {
+    p {
+        display: block;
+        max-width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5em;
+        font-weight: 400;
+
+        + p {
+            margin-top: 2em;
+        }
+    }
+
+    blockquote {
+        quotes: '\201c' '\201d';
+        color: $mainColor;
+        background: none;
+        border: 0;
+        box-shadow: none;
+        font-size: 38px;
+
+        p {
+            margin: 0;
+
+            &:before {
+                content: open-quote;
+            }
+
+            &:after {
+                content: close-quote;
+            }
+        }
+    }
+
+    .blockquote__cite {
+        display: block;
+        font-size: 24px;
+        margin-top: 18px;
+    }
+
+    section {
+        img {
+            border: 0;
+            background: none;
+            box-shadow: none;
+        }
+    }
+
+    .sub-title {
+        color: #a4a4a4;
+        font-size: 0.7em;
+        font-weight: 400;
+        line-height: 1.25em;
+        text-transform: uppercase;
+    }
+
+    .slide {
+        .slide__image {
+            max-height: 600px;
+        }
+
+        pre {
+            margin: 0 auto;
+
+            box-shadow: none;
+            background: $color-white;
+            border: 0;
+
+            font-size: 22px;
+        }
+    }
+
+    .slide--brain {
+        .slide__content {
+            position: relative;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 699px;
+            height: 512px;
+        }
+
+        img.fragment {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            max-height: none;
+        }
+    }
+
+    .blockquote--small {
+        font-size: 24px;
+
+        .blockquote__copy {
+            display: inline-block;
+
+            + .blockquote__copy {
+                margin-top:20px;
+            }
+        }
+    }
+
+    pre + pre {
+        margin-top: 130px !important;
+    }
+}

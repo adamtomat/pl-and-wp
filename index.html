@@ -1,50 +1,721 @@
 <!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+        <title>Pattern Libraries &amp; WordPress: Chasing the Holy Grail</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/rareloop.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <link href="bower_components/prism/themes/prism-funky.css" rel="stylesheet" />
+        <!-- <link href="node_modules/prism-themes/themes/prism-twilight.css" rel="stylesheet" /> -->
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section class="slide">
+                    <div class="slide__content">
+                        <h1 class="slide__title">Pattern Libraries &amp; WordPress</h1>
+                        <span class="slide__sub-title">Chasing the Holy Grail</span>
+                    </div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+                    <aside class="notes">
+                        Start Rareloo's Primer (8080)
+                    </aside>
+                </section>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+                <section class="slide">
+                    <div class="slide__content">
+                        <h1 class="slide__title">Adam Tomat</h1>
+                        <span class="slide__sub-title">Senior full-stack developer at <a href="https://www.rareloop.com">Rareloop</a></span>
+                    </div>
+                </section>
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+                <section class="slide-group">
+                    <section class="slide why">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Outline</h1>
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Just go through the main points of this talk</li>
+                                <li>I don't know how many of you have seen Chris's talk on modern WordPress. It covers things like using composer, dotenv, wp as a dependency etc. Did a great job of how to make WP easier to set up, deploy and maintain.</li>
+                                <li>I'm going to focus in at the theme level. We've open sourced our starter theme (Lumberjack) which imo makes WP much better to dev with. Could do a talk on that alone, so I won't go into it. But it's built to solve a lot of the problems that I'll cover shortly.</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide" data-background-image="images/problem.gif">
+                        <aside class="notes">
+                            - What the problem is. Why do we even care about this?
+                        </aside>
+                    </section>
+
+                    <section class="slide" data-background-image="images/how-to-fix-it.gif">
+                        <aside class="notes">
+                            - How to improve this situation
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Pattern Libraries</h1>
+                            <aside class="notes">
+                                <li>Talk about Pattern Libraries; what they are and how they can help</li>
+                                <li>Has anybody used a pattern library before?</li>
+                                <li>Pattern Library best practices. We've been using PL's for a while. How to get the most out of using one</li>
+                                <li>How Pattern Libraries don't play nicely with WordPress</li>
+                            </aside>
+                        </div>
+                    </section>
+
+                    <section class="slide" data-background-color="#FBF8F1">
+                        <div class="slide__content">
+                            <img src="images/grail.png" class="slide__image">
+
+                            <aside class="notes">
+                                - How Pattern Libraries can play nicely with WordPress. This is the Holy Grail
+                            </aside>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="slide-group">
+                    <section class="slide why">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Why chase the Holy Grail?</h1>
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <blockquote class="blockquote">
+                                <p class="blockquote__copy">According to legend, it has special powers and is designed to provide happiness, eternal youth and food in infinite abundance.</p>
+                                <a class="blockquote__cite" href="https://en.wikipedia.org/wiki/Holy_Grail">Wikipedia</a>
+                            </blockquote>
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Make change easier</h1>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>The cost of development is in change. If a project is hard to change then maintaining it costs more.</li>
+                                <li>For sites that are never going to change after launch, then this is overkill. But for sites that need to be maintained, it's crutial to make it easier to change.</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Group thinking together</h1>
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>To allow us to group our thinking together</li>
+                                <li>Let me dive into this a bit more...</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide slide--brain">
+                        <div class="slide__content">
+                            <img data-src="images/brain-high.jpg">
+                            <img class="fragment" data-src="images/brain-mid.jpg">
+                            <img class="fragment" data-src="images/brain-low.jpg">
+                            <img class="fragment" data-src="images/brain-empty.jpg">
+                        </div>
+
+                        <aside class="notes">
+                            <li>To hold information in mind, you have to use your pfc. Limited resource. Concious thinking uses pfc.</li>
+                            <li>If you drove here, you probably didn't use your pfc. It's embedded and you can do it without thinking if it's a familiar route.</li>
+                            <li>Quick exercise to demonstrate this. What's 1+1? No pfc, no effort</li>
+                            <li>What's 10+10? Again, no pfc, easy right.</li>
+                            <li>What's 56 + 178 = 234? Silence / laugter. No-one wants to do it. Why? Because you have to put in a bit of effort. Stop other things you're thinking about. It's a serial process. 1 thing at a time. </li>
+                            <li>Whenever you make a decision, switch focus, solve a problem etc, it drains your battery</li>
+                            <li>With that exercise, I drained your batteries. Sorry. Your blood gloucose levels go down and your performace for the next task goes down.</li>
+                            <li>The lower your battery, the harder it is to remain focused and solve problems.</li>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Switching tasks is hard</h1>
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <img data-src="images/floated-items.jpg" width="750px">
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Quick experiment. Don't say anything aloud.</li>
+                                <li>How many individual elements here are floated?</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide" data-background-color="#243136">
+                        <div class="slide__content">
+                            <img data-src="images/pass-by-reference.jpg">
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>What is $a here? (6)</li>
+                                <li>Why? Care to explain?</li>
+                                <li>Passed by reference</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">How many floated elements?</h1>
+                        </div>
+
+                        <aside class="notes">
+                            <li>5 (button and each icon)</li>
+                            <li>This is something WP devs do a lot. Switch between solving fronend problems like layout to backend problems like how to pull out your data and get in the correct format.</li>
+                            <li>It's expensive, and every time you do it your performace for the next task goes down. This leads to slowing down or bugs creep in that otherwise wouldn't.</li>
+                        </aside>
+                    </section>
+
+                    <section class="slide" data-background-image="images/chop-veg.jpg">
+                        <aside class="notes">
+                            <ul>
+                                <li>It's like cooking. I am not a good cook. When I'm doing something difficult, I find it stressful. There's a lot going on and I am jumping between chopping, weighing and cooking.</li>
+                                <li>Simple solution is group things together. It's easier to chop all the veg and weigh everything at the start, so when you start cooking that's all you need to think about.</li>
+                                <li>So how do we apply this to the web? Do all the FE together, then all the CMS together.</li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section class="slide-group">
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Common code found in WordPress</h1>
+                        </div>
+                    </section>
+
+                    <section class="slide" data-background-color="#243136">
+                        <div class="slide__content">
+                            <img data-src="images/php-mixed-with-markup.jpg" class="slide__image">
+                            <aside class="notes">
+                                - Something we see all too often. Markup littered with php
+                            </aside>
+                        </div>
+                    </section>
+
+                    <section class="slide" data-background-color="#243136">
+                        <div class="slide__content">
+                            <img data-src="images/duplicate-content.jpg" class="slide__image">
+
+                            <aside class="notes">
+                                - In this example we have duplicate markup.
+                                - Might be fine in this example, but if it's used across different pages it becomes hard to update
+                                - And that's what it all comes down to. Being hard to change. That's the problem.
+                            </aside>
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Isolate common components</h1>
+                        </div>
+                    </section>
+
+                    <section class="slide" data-background-color="#243136">
+                        <div class="slide__content">
+                            <img data-src="images/isolate-1.jpg">
+                        </div>
+                    </section>
+
+                    <section class="slide" data-background-color="#243136">
+                        <div class="slide__content">
+                            <img data-src="images/isolate-2.jpg">
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Component knows how to render itself in all instances it is used. The knowledge is in one place.</li>
+                                <li>This is basic stuff. But bear with me here.</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <img src="images/bear.jpg">
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Yes that's a snake coming out of his zipper</li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Logic</h1>
+                        </div>
+                    </section>
+
+                    <section class="slide" data-background-color="#243136">
+                        <div class="slide__content">
+                            <img src="images/sql-in-view.jpg">
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>At least 3 things I don't like here</li>
+                                <li>1. We have a query mixed in with HTML</li>
+                                <li>2. Defensive template logic around specific implementation. (if).</li>
+                                <li>3. get_permalink. Limits re-use as it assumes implementation details</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title fragment">MVC</h1>
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Nothing new. We have a pattern that aims to solve this already.</li>
+                                <li>But how do we do this in WordPress? (change now) The short answer is we cheat.</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content"><img data-src="images/cheat.gif" width="650"></div>
+                    </section>
+
+                    <section class="slide" data-background-image="images/timber.jpg" data-background-position="top"></section>
+
+                    <section class="slide" data-background-image="images/timber-2.jpg" data-background-position="top"></section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <blockquote>
+                                A faster, easier and more powerful way to build themes. Because WordPress is awesome, but the loop isn’t.
+                            </blockquote>
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <p>Timber helps you create fully-customized WordPress themes faster with more sustainable code. With Timber, you write your HTML using the Twig Template Engine separate from your PHP files.</p>
+
+                            <p>This cleans-up your theme code so your PHP file can focus on supplying the data and logic, while your twig file can focus 100% on the display and HTML.</p>
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Controllers</h1>
+                            <img data-src="images/single-php.jpg">
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>You basically build up an array, and pass it into the view</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Views</h1>
+                            <img data-src="images/single-twig.jpg">
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>I don't have time to deep dive into Twig, but it's basically a templating language that will compile down to PHP.</li>
+                                <li>Doesn't let you much, to force logic into the controller</li>
+                                <li>In this example (taken from their docs), you can see how we've punched out holes in our template that data can fill</li>
+                                <li>I don't actually like the way the example has done this. It still knows too many implimentation details.</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <img data-src="images/single-twig-2.jpg">
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>We have isolated the logic about where data comes from higher up. Which makes the template more re-usable</li>
+                                <li>For example, I could use this template on my 404 page too now, like so:</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <img data-src="images/404-php.jpg">
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Views can still have logic</h1>
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <img data-src="images/score.jpg">
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <img data-src="images/score-twig.jpg">
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Step through the code</li>
+                                <li>This is template logic. It should live here</li>
+                                <li>We've defined an API for this component. The controller doesn't care about bad/ok/good</li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section class="slide-group">
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">You don't need WordPress</h1>
+                        </div>
+
+                        <aside class="notes">
+                            You don't need WP for the views
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <blockquote class="blockquote blockquote--small">
+                                <p class="blockquote__copy">Ensuring a website is consistent and easy to maintain are two of the biggest headaches faced by larger organisations. Fortunately pattern libraries can help.</p>
+                                <p class="blockquote__copy">A pattern library, documents all of these ‘patterns’ (also often known as modules) and defines how they behave, what they look like and how they are coded.</p>
+                                <a class="blockquote__cite" href="https://boagworld.com/design/pattern-library">- Paul Boag</a>
+                            </blockquote>
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <blockquote class="blockquote">
+                                <p class="blockquote__copy">We’re not designing pages, we’re designing systems of components.</p>
+                                <a class="blockquote__cite" href=="http://bradfrost.com/blog/mobile/bdconf-stephen-hay-presents-responsive-design-workflow">Stephen Hay</a>
+                            </blockquote>
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <ul>
+                                <li>Design pages, develop pages</li>
+                                <li class="fragment">Create a design system, develop pages</li>
+                                <li class="fragment">Create a design system, develop a design system.</li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="slide-group">
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Primer</h1>
+
+                            <ul style="max-width: 55%;">
+                                <li class="fragment">Runs on <code>PHP</code>. Supports multiple templating languages, including <code>Twig</code>.</li>
+                                <li class="fragment">Data is defined for a view as <code>json</code>, and is automatically passed into the view.</li>
+                                <li class="fragment"><a href="http://localhost:8080">Show me one</a></li>
+                            </ul>
+                        </div>
+                        <aside class="notes">
+                            Built at Rareloop.
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <img data-src="images/page-heading-dir.jpg">
+                        </div>
+                    </section>
+
+                    <section class="slide" data-background-color="#000">
+                        <div class="slide__content">
+                            <pre><code class="language-twig" data-trim>
+// template.twig
+<h1 class="page-heading">{{ title }}</h1>
+                            </code></pre>
+
+                            <pre class="fragment"><code class="language-json" data-trim>
+// data.json
+{
+    "title": "Hello World"
+}
+                            </code></pre>
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>data.json is your controller. Anything you put here will be converted to an array and passed into the twig template</li>
+                                <li>Not going to deep dive into how Primer works. Come chat with me after if you're interested in hearing more.</li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section class="slide-group">
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Best practices</h1>
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h2 class="slide__sub-title">Knowing when to hard-code. Don't abstract everything.</h2>
+                            <p><a href="http://localhost:8080/patterns/components/test">View example</a></p>
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                 <li>They both render the same</li>
+                                 <li>First one exposes all its variables. Great. What does this mean though? Anything that wants to use it has to provide it with all this data. What if it doesn't care? What if it doesn't change?</li>
+                                 <li>Assuming no content changes (e.g. title, copy), the only thing we need to expose is the link. WordPress will need to handle that, so it must be exposed to the controller.</li>
+                             </ul>
+                         </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h2 class="slide__title">It knows nothing (about WordPress)</h2>
+                            <img data-src="images/jon-snow.gif">
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>This is the ideal situation. Forces you to write cms agnostic frontend that doesn't rely on WP</li>
+                                <li>Makes it easy to migrate to something else</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h2 class="slide__title">Sometimes it's okay (that it knows about WordPress)</h2>
+                            <img data-src="images/jon-snow-2.gif">
+                        </div>
+                        <aside class="notes">
+                            <ul>
+                                <li>Sometimes we have to be pragmatic</li>
+                                <li>One example is menus. Menus are a pain in WP. Trying to write your markup to not care about how WP deals with menus is really hard and time consuming.</li>
+                                <li>In these edge cases, if you need to move away from WP you should only have a small job to re-implement these bits. As long as it's not EVERYTHING</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h2 class="slide__title">Don't bleed out</h2>
+                            <img data-src="images/blood.gif">
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Let its container worry about width and spacing.</li>
+                                <li>As you don't know where it's going to be used, do not assume</li>
+                                <li>Show example if you have time</li>
+                            </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <section class="slide-group">
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h1 class="slide__title">Migrating Primer to WordPress</h1>
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Say we finished our Pattern Library. We now have an API for every template</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide" data-background-color="#000">
+                        <div class="slide__content">
+                            <pre><code class="language-twig" data-trim>
+{% extends 'base.twig' %}
+
+{% block templateContent %}
+    <div class="slab-blue slab--pad home-banner">
+        <div class="inner">
+            <span class="heading-1">We&#8217;re Digital Artisans.</span>
+            <span class="home-sub">An expert team, passionate about crafting bespoke websites &amp; apps</span>
+            <a href="{{ link }}">Get to know us</a>
+        </div>
+    </div>
+{% endblock %}
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section class="slide" data-background-color="#000">
+                        <div class="slide__content">
+                            <pre><code class="language-json" data-trim>
+{
+    'link': '/templates/about'
+}
+                            </code></pre>
+                        </div>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h2 class="slide__title">How to migrate</h2>
+                            <ul>
+                                <li class="fragment">Copy across all twig templates</li>
+                                <li class="fragment">Copy across assets (minified css/js, images, fonts)</li>
+                                <li class="fragment">Implement controller</li>
+                            </ul>
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                 <li>What happens when we make a change?</li>
+                                 <li>Make change in Primer first</li>
+                                 <li>Or Make change in WP template first, remember to move it back into Primer later along with any other assets</li>
+                                 <li>It's hard and required concious thought, draining battery</li>
+                                 <li>The second these 2 get out of sync, you lose any benefits of the PL. It's really hard to make changes now.</li>
+                                 <li>It becomes more difficult to make small changes compared to when we just used one big `php` file for everything</li>
+                                 <li>So, why am I telling you that Pattern Libraries are a good idea if they actually make change more challenging?</li>
+                                 <li>What if we get all the benefits of a Pattern Library like Primer and all the benifits of WordPress as a CMS, without any of the migration friction?</li>
+                             </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide" data-background-image="images/merge-happiness.gif">
+                        <aside class="notes">
+                            <ul>
+                                <li>That's what we're aiming for. Having a PL and WP with as little friction between them as possible.</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h2 class="slide__title">The same repo</h2>
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Currently they are in different repos. They don't have to be</li>
+                                <li>You can install Primer outside WP webroot</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h2 class="slide__title">The same Twig templates</h2>
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Firstly, we've already removed the biggest friction by having our Pattern Library use the same templating engine (twig) as WordPress.</li>
+                                <li>Now, what if WordPress and Primer used the same templates. Not a copy of. We can tell primer to look in WordPress for the twig files</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h2 class="slide__title">The same assets</h2>
+                        </div>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Could have a build step which adds a minified css &amp; js file to WordPress</li>
+                                <li>That build step is still friction though</li>
+                                <li>Better if Primer knows to look in WP for the css &amp; js. One file that they both use.</li>
+                                <li>The most difficult problem here is paths</li>
+                            </ul>
+                        </aside>
+                    </section>
+
+                    <section class="slide">
+                        <div class="slide__content">
+                            <h2 class="slide__title">How to migrate</h2>
+                            <ul>
+                                <li class="fragment">Implement controller</li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="slide">
+                    <div class="slide__content">
+                        <h1 class="slide__title">Resources</h1>
+                        <ul>
+                            <li><a href="https://github.com/Rareloop/primer">Primer</a></li>
+                            <li><a href="https://github.com/Rareloop/lumberjack">Lumberjack</a></li>
+                            <li><a href="http://timber.github.io/timber">Timber</a></li>
+                            <li><a href="https://roots.io/bedrock/">Bedrock</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+                backgroundTransition: 'none',
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    // { src: 'js/prism.min.js', callback: function () {
+                    //     Prism.highlightAll();
+                    // } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
 </html>

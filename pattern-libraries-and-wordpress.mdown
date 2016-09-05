@@ -1,0 +1,108 @@
+# Pattern Libraries & WordPress: Chasing the Holy Grail
+
+## 3 Take aways
+    1. Pattern Libraries are awesome
+    2. WordPress themes can be better
+    3. Combining a Pattern Library and WordPress rocks
+
+## Setting the scene. Why?
+    - All about making change easier
+    - Group thinking together to save your brain. Less exhasting. It's like chopping all your ingredients before you start cooking.
+
+## Journey
+Start with the problem, a terrible WordPress theme. Slowly improve it until we have something really powerful.
+
+**1. Common WordPress theme, with markup mixed with `PHP` logic**
+
+We know that isolation is good (Single Responsibility). Good isolation leads to re-use.
+
+**2. Split out common components into their own `.php` files**
+
+The knowledge about this component is now in one place.
+Doesn't remove PHP logic from the templates though.
+
+**3. MVC in WordPress. Looking at Timber
+
+Views are now in Twig. Which means we have limited functionality. Forced logic to be held higher up, in the controller.
+
+Controllers care about getting data ready, then pass that data into a view.
+
+**4. Views can still have logic**
+
+For example, showing different markup if there's no results. The controller knows **where** the data lives (i.e. WordPress), and knows what format the view wants it in.
+
+The view knows what to do with that data, in order to display the correct markup.
+
+**5. Introducing Pattern Libraries**
+
+> Ensuring a website is consistent and easy to maintain are two of the biggest headaches faced by larger organisations. Fortunately pattern libraries can help.
+> A pattern library, documents all of these ‘patterns’ (also often known as modules) and defines how they behave, what they look like and how they are coded.
+_Credit: [Paul Boag](https://boagworld.com/design/pattern-library/)_
+
+Design pages, develop pages.
+Create a design system, develop pages.
+Create a design system, develop a design system.
+
+    - We’re not designing pages, we’re designing systems of components. — [Stephen Hay](http://bradfrost.com/blog/mobile/bdconf-stephen-hay-presents-responsive-design-workflow)
+
+**6. Atomic Design**
+
+Brad Frost has come up with a methodology for creating design systems called [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/):
+
+    - Atoms: Atoms are the basic building blocks of matter. Applied to web interfaces, atoms are our HTML tags, such as a form label, an input or a button.
+    - Molecules: Things start getting more interesting and tangible when we start combining atoms together. Molecules are groups of atoms bonded together and are the smallest fundamental units of a compound. These molecules take on their own properties and serve as the backbone of our design systems.
+    - Organisms: Molecules give us some building blocks to work with, and we can now combine them together to form organisms. Organisms are groups of molecules joined together to form a relatively complex, distinct section of an interface.
+    - Templates: At the template stage, we break our chemistry analogy to get into language that makes more sense to our clients and our final output. Templates consist mostly of groups of organisms stitched together to form pages. It’s here where we start to see the design coming together and start seeing things like layout in action.
+    - Pages: Pages are specific instances of templates. Here, placeholder content is replaced with real representative content to give an accurate depiction of what a user will ultimately see.
+
+For a lot of smaller content sites, we found it difficult knowing what a module should be: an atom, molecule or organism.
+
+So we made Primer, which has the concept of:
+
+    - Elements: Similar to atoms. Typically not included in templates, but exist to show how they look in the library
+    - Components: These are the building blocks. Could be a heading, or footer.
+    - Templates: Similar to Pages
+
+**7. Looking at Primer**
+
+Runs on `PHP`. Supports multiple templating languages, including Twig.
+
+Data is defined for a view as `json`, and is automatically passed into the view. This is your **api** for that component.
+
+You can define different states for a component, by re-defining the `json`. For example, you can show the error state of your custom select.
+
+_TODO: Best practices_
+
+    - Knowing when to hard-code. Don't abstract everything.
+    - It's like John Snow. It knows nothing (about WordPress) - Ideal
+    - Sometimes it's okay to let it know about WordPress - Pragmatic
+    - Bleeding out
+
+**8. Migrating Primer to WordPress**
+
+Now that we've finished with Primer, how do we use this in WordPress?
+
+They are in seperate repos, so we will have to:
+
+    - Copy all of our templates across. If they are in different templating languages, we'd need to re-implement the templates in WordPress. E.g. `handlebars` -> `PHP`
+    - Copy across our compiles assets (minified css and js, images, fonts etc)
+
+There is friction between Primer and WordPress. We can reduce this friction by using the same templating language for both Primer and WordPress. I'd recommend `Twig`, because it's awesome.
+
+A 1 time job of copying some files from 1 repo to another doesn't sound so bad, right? Well, it's only a 1 time job if you never do any updates to the site. Chances are, thing will change (even when developing the WordPress side of things), and everytime something changes you have to make sure Primer and WordPress are in sync.
+
+Sometimes that's forcing yourself to make the change in Primer and migrate to WordPress again. Other times, where you make the change in WordPress first, you have to be disciplined enough to migrate that change back over to Primer.
+
+It's _okay_, but we have found that it is actually really challenging keeping things in sync. It becomes more difficult to make small changes compared to when we just use one big `php` file for everything.
+
+So, why am I telling you that Pattern Libraries are a good idea if they actually make change more challenging?
+
+**9. Because it doesn't have to be**
+
+What if we get all the benefits of a Pattern Library like Primer and all the benifits of WordPress as a CMS, without any of the migration friction?
+
+This is the **Holy Grail**!
+
+**10. How?**
+
+Move Primer into the same repo as WordPress.
